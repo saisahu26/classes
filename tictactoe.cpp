@@ -24,31 +24,42 @@ bool isValid (int columnmove, int rowmove, int board[3][3]);
 int main () { //this is the main part of the code, where all the other methods are called from, this is also where the user can play again
   char repeat = ' ';
   bool playAgain = true;
+  bool whilePlaying = true;
   int playercount = 0;
   bool valid = true;
-  while (playAgain) {
   int move = 0;
+  int board [3][3];
+  int row = 3;
+  setBoard(board);
+  //printBoard(board, row);
+  move = playerone;
   int rowmove = 0;
   int columnmove = 0;
   int xwincounter = 0;
   int owincounter = 0;
-  bool win = true;//the win condtion to see if the game is over
-  int board[3][3];  //the array used for thr 3x3 board
-  int row = 3;
-  setBoard(board); //calling the set board which assigns values to each cell
-  printBoard(board, row); //printing the board after all of the values are set
-  move = playerone; //setting the move to player one or X
-  while (move == playerone) { //while the move is x move, they can move and reprint the board
-    playerMove(board, X_MOVE, O_MOVE, rowmove, columnmove, move, playertwo, win, playercount, valid);
+  bool win = false;
+  while (playAgain) {
+    setBoard(board);
     printBoard(board, row);
+  //the win condtion to see if the game is over
+  //int board[3][3];  //the array used for thr 3x3 board
+  //int row = 3;
+  //setBoard(board); //calling the set board which assigns values to each cell
+  //printBoard(board, row); //printing the board after all of the values are set
+  //move = playerone; //setting the move to player one or X
+    while (whilePlaying) { //while the move is x move, they can move and reprint the board
+    //playerMove(board, X_MOVE, O_MOVE, rowmove, columnmove, move, playertwo, win, playercount, valid);
+     //printBoard(board, row);
     if (win == false) { //if no one has won yet then you can continue
       playerMove(board, X_MOVE, O_MOVE, rowmove, columnmove, move, playertwo, win, playercount, valid);
 	printBoard(board, row);
     }
-    else if (win == true) { //if won, who has won, and do they want to play again?
-      
+    if (win == true) { //if won, who has won, and do they want to play again?
+      cout << "move: " << move << endl;
+      whilePlaying = false;
       if (playercount == 9) {
 	cout << "tie" << endl;
+	cout << "Do you want to play again?" << endl;
       }
       else if (move == playertwo) {
 	owincounter++;
@@ -68,17 +79,16 @@ int main () { //this is the main part of the code, where all the other methods a
     cout << "Do you want to play again?" << endl;
 
     cin >> repeat;
-
+    //cin.ignore(80, '\n');
     if (repeat == 'y') { //y and n siginify yes or no
+      cout << "break" << endl;
+      setBoard(board);
+      printBoard(board, row);
+      win = false;
+      playercount = 0;
+      move = 1;
+      whilePlaying = true;
       playAgain = true;
-      cout << "  1  2  3" << endl;
-      for (int i = 0; i < row; i++) {
-	cout << i+1;
-	for (int j = 0; j < row; j++) {
-	  board[i][j] = EMPTY;
-	  
-	}
-	cout << endl;
       }
     }
     else if (repeat == 'n') {
@@ -88,7 +98,7 @@ int main () { //this is the main part of the code, where all the other methods a
     }
     }
   }
- }
+ 
 
   return 0;
 
@@ -136,7 +146,7 @@ int playerMove (int board[3][3], int X_MOVE, int O_MOVE, int rowmove, int column
   if (move == playerone) { //start by entering which column and row you want to move
   cin >> rowmove;
   cin >> columnmove;
-
+  //cin.clear();
 
   //changing it to the numbers used in the console array
   rowmove = rowmove - 1;

@@ -1,0 +1,201 @@
+#include<iostream>
+
+using namespace std;
+
+const int X_MOVE = 1;
+const int O_MOVE = 0;
+const int EMPTY = 2;
+const int playerone = 1;
+const int playertwo = 0;
+
+
+
+int printBoard(int board[3][3], int row);
+int setBoard(int board[3][3]);
+int playerMove(int board[3][3], int X_MOVE, int O_MOVE, int rowmove, int columnmove, int &move, int playertwo, bool &win);
+bool checkWin (int board[3][3]);
+
+
+int main () {
+  char repeat = ' ';
+  bool playAgain = true;
+
+  while (playAgain) {
+  int move = 0;
+  int rowmove = 0;
+  int columnmove = 0;
+  bool win = true;
+  int board[3][3];  
+  int row = 3;
+  setBoard(board);
+  printBoard(board, row);
+  move = playerone;
+  while (move == playerone) {
+    playerMove(board, X_MOVE, O_MOVE, rowmove, columnmove, move, playertwo, win);
+    printBoard(board, row);
+    if (win == false) {
+	playerMove(board, X_MOVE, O_MOVE, rowmove, columnmove, move, playertwo, win);
+	printBoard(board, row);
+    }
+    else {
+
+      if (move == 1) {
+	cout << "X Wins" << endl;
+      }
+      else if (move == 2) {
+	cout << "O Wins" << endl;
+      }
+    }
+
+    cout << "Do you want to play again?" << endl;
+
+    cin >> repeat;
+
+    if (repeat == 'y') {
+      playAgain = true;
+    }
+    else if (repeat == 'n') {
+      playAgain = false;
+    }
+  }
+ }
+
+  return 0;
+
+}
+
+int printBoard (int board[3][3], int row) {
+
+  cout << "  1  2  3" << endl;
+
+  for (int i = 0; i < row; i++) {
+    cout << i+1;
+    for (int j = 0; j < row; j++) {
+      if(board[i][j] == EMPTY) {
+	cout << " - ";
+      }
+      else if (board[i][j] == X_MOVE) {
+	cout << " X ";
+      }
+      else if (board[i][j] == O_MOVE) {
+	cout << " O ";
+      }
+    }
+    cout << endl;
+  }
+
+  
+  return 0;
+
+}
+
+int setBoard (int board [3][3]) {
+
+    for(int i = 0; i < 3; i++) {
+      for (int j = 0; j < 3; j++) {
+	board[i][j] = EMPTY;
+      }
+    }
+
+    return 0;
+  }
+
+ int playerMove (int board[3][3], int X_MOVE, int O_MOVE, int rowmove, int columnmove, int &move, int playertwo, bool &win) {
+
+
+  if (move == playerone) {
+  cin >> rowmove;
+  cin >> columnmove;
+
+  rowmove = rowmove - 1;
+  columnmove = columnmove - 1;
+
+
+  if (board[columnmove][rowmove] != O_MOVE) {
+    board[columnmove][rowmove] = X_MOVE;
+  }
+  else {
+    cout << "invalid move" << endl;
+  }
+
+  win = checkWin (board);
+
+  if (win == false) {
+    move = playertwo;
+  }
+ }
+  else {
+    cin >> rowmove;
+  cin >> columnmove;
+
+  rowmove = rowmove - 1;
+  columnmove = columnmove - 1;
+
+  board[columnmove][rowmove] = O_MOVE;
+
+  win = checkWin (board);
+
+  if (win == false) {
+    move = playerone;
+  }
+
+  }
+  
+  return 0;
+}
+
+bool checkWin (int board[3][3]) {
+  //x win conditions
+  if ((board[0][0] == X_MOVE) && (board[1][1] == X_MOVE) && (board[2][2] == X_MOVE)) {
+    return true;
+  }
+
+  else if ((board[0][2] == X_MOVE) && (board[1][1] == X_MOVE) && (board[2][0] == X_MOVE)) {
+    return true;
+  }
+  else if ((board[0][2] == X_MOVE) && (board[0][1] == X_MOVE) && (board[0][0] == X_MOVE)) {
+    return true;
+  }
+  else if ((board[1][2] == X_MOVE) && (board[1][1] == X_MOVE) && (board[1][0] == X_MOVE)) {
+    return true;
+  }
+
+  else if ((board[2][2] == X_MOVE) && (board[2][1] == X_MOVE) && (board[2][0] == X_MOVE)) {
+    return true;
+  }
+
+  //o win conditions
+  else if ((board[0][0] == O_MOVE) && (board[1][1] == O_MOVE) && (board[2][2] == O_MOVE)) {
+    return true;
+  }
+
+  else if ((board[0][2] == O_MOVE) && (board[1][1] == O_MOVE) && (board[2][0] == O_MOVE)) {
+    return true;
+  }
+  else if ((board[0][2] == O_MOVE) && (board[0][1] == O_MOVE) && (board[0][0] == O_MOVE)) {
+    return true;
+  }
+  else if ((board[1][2] == O_MOVE) && (board[1][1] == O_MOVE) && (board[1][0] == O_MOVE)) {
+    return true;
+  }
+
+  else if ((board[2][2] == O_MOVE) && (board[2][1] == O_MOVE) && (board[2][0] == O_MOVE)) {
+    return true;
+  }
+
+  
+  return false;
+ }
+
+// 1 2 3
+//1
+//2
+//3
+//make board function
+//make print function
+//take turn function
+//player number 0 - X, 1 - O
+//have them input rowcolumn
+//function to check if move valid
+//make the move
+//Exit, switch moves

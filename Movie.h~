@@ -1,0 +1,18 @@
+#include <iostream>
+#include <cstrings>
+#include "Movie.h"
+
+using namespace std;
+
+class Movie: Public Media {
+ public:
+  Movie(char* titleMedia, int yearMedia, char* directorMov, int ratingMov,int durationMov);
+  char* getDirector();
+  int getDur();
+  int getRating();
+ protected:
+  char*director;
+  int duration;
+  int rating;
+  
+};

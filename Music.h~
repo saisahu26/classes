@@ -1,0 +1,19 @@
+#include <iostream>
+#include <cstring>
+#include "Media.h"
+
+using namspace std;
+
+class Music : public Media {
+
+ public:
+  Music(char* titleMedia, int yearMedia, char* artistMusic, char* publisherMedia, int durationMusic);
+  char* getArtist();
+  int getDuration();
+  char* getPublisher();
+ protected:
+  char* artist;
+  int duration;
+  char* publisher;
+
+}

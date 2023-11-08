@@ -1,0 +1,60 @@
+#include <iostream>
+#include <cstring>
+#include "Media.h"
+#include <vector>
+
+using namespace std;
+
+
+void addMedia(vector<Media*> &MediaLs);
+void printMedia(vector<Media> &MediaLs);
+
+int main() {
+  char input[80];
+  vector<Media*> MediaLs;
+  cout <<"Enter print or remove" << endl;
+  cin >> input;
+  cin.ignore(256, "\n");
+  if(strcmp(input, "add") == 0){
+  addMedia(MedaiLs);
+  }
+  else(strcmp(input, "print") == 0) {
+      printMedia(MediaLs);
+    }
+  return 0;
+}
+
+
+void add (vector<Media*> &MediaLs) { //the class that hold the information assigned to each student (name, id, and gpa)
+  char mediaVar[80];
+  cout << "what type of media do you want to add?" << endl;
+  cin.getline(mediaVar, 80);
+  if (strcmp(nediaVar, "movie") == 0) {
+
+    char* title;
+    char* direct;
+    int year = 0;
+    int dur = 0;
+    int rate = 0;
+    cout << "enter title" << endl;
+    cin >> title;
+    cin.ignore(256, "\n");
+    cout << "enter director" << endl;
+    cin >> direct;
+    cin.ignore(256, "\n");
+    cout << "enter year" << endl;
+    cin >> year;
+    cin.ignore(256, "\n");
+    cout << "enter duration" << endl;
+    cin >> dur;
+    cin.ignore(256, "\n");
+    cout <<"enter a rating" << endl;
+    cin >> rate;
+    cin.ignore(256, "\n");
+    Movie* mov = new Movie(title, year, director, rating, duration);
+    MediaLs.push_back(mov);
+  }
+
+  //  void search(vector<Media*
+
+

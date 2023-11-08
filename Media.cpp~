@@ -1,0 +1,23 @@
+#include <iostream>
+#include <cstring>
+#include "Media.h"
+
+using namespace std;
+
+Media::Media(char* titleMedia, int yearMedia) {
+  
+}
+
+Media::Media(char* newdescription) {
+  description = new char[80];
+  //strcpy(description, newdescription);
+  //id = 0;
+}
+
+char* Media::getTitle() {
+  return titleMedia;
+}
+
+int Media::getYear() {
+  return yearMedia;
+}

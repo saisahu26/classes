@@ -1,0 +1,10 @@
+#include <iostream>
+#include <cstring>
+#include "Music.h"
+
+using namespace std;
+
+Music :: Music (char* titleMedia, int yearMedia, char* artistMusic, char*directorMusic, int ratingMusic, int durationMusic) : Media(titleMedia, yearMedia) {
+
+
+}

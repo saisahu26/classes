@@ -1,0 +1,29 @@
+#include<iostream>
+
+using namespace std;
+
+
+int main () {
+  
+  int hold [10];
+
+  int newhold [10];
+
+  int enter;
+
+  
+
+  for (int i; i < 10; i++) {
+    cin >> enter;
+    
+    hold [i] = enter;
+
+    
+  }
+
+  for (int i; i < 10; i++) {
+
+  }
+
+  return 0;
+}

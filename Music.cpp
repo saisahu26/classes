@@ -13,7 +13,7 @@ Music :: Music (char* titleMedia, int yearMedia, char* artistMusic, char* publis
   duration = durationMusic;
   publisher = new char[80];
   strcpy(publisher, publisherMusic);
-
+  cout << "finsihed music con" << endl;
 }
 
 char* Music :: getArtist() {
@@ -26,4 +26,16 @@ int Music :: getDuration() {
 
 char* Music :: getPublisher() {
   return publisher;
+}
+
+void Music :: print() {
+  cout << "title: " << title << endl;
+  cout << "year: " << year << endl;
+  cout << "artist; " << artist << endl;
+  cout << "publisher: " << publisher << endl;
+  cout << "duration: " << duration << endl;
+}
+
+Music :: ~Music() {
+
 }

@@ -358,3 +358,6 @@ emacs VideoGame.h
 emacs MediaDatabase.cpp
 emacs MediaDatabase.cpp
 emacs Movie.h
+emacs Studentlist.cpp
+emacs StudentList.cpp
+emacs Studentlist.cpp

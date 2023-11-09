@@ -3,13 +3,14 @@
 #include "Movie.h"
 #include "Music.h"
 #include "VideoGame.h"
+#include "Media.h"
 #include <vector>
 
 using namespace std;
 
 
 void addMedia(vector<Media*> &MediaLs);
-void printMedia(vector<Media> &MediaLs);
+void searchMedia(vector<Media*> &MediaLs);
 
 int main() {
   char input[80];
@@ -20,21 +21,23 @@ int main() {
   if(strcmp(input, "add") == 0){
   addMedia(MediaLs);
   }
-  else if (strcmp(input, "print") == 0) {
-      printMedia(MediaLs);
+  else if (strcmp(input, "search") == 0) {
+      searchMedia(MediaLs);
     }
   return 0;
 }
 
 
-void add (vector<Media*> &MediaLs) { //the class that hold the information assigned to each student (name, id, and gpa)
+void addMedia (vector<Media*> &MediaLs) { //the class that hold the information assigned to each student (name, id, and gpa)
   char mediaVar[80];
   cout << "what type of media do you want to add?" << endl;
   cin.getline(mediaVar, 80);
   if (strcmp(mediaVar, "movie") == 0) {
 
     char* title;
+    title = new char[80];
     char* direct;
+    direct = new char[80];
     int year = 0;
     int dur = 0;
     int rate = 0;
@@ -53,16 +56,22 @@ void add (vector<Media*> &MediaLs) { //the class that hold the information assig
     cout <<"enter a rating" << endl;
     cin >> rate;
     cin.ignore(256, '\n');
+    cout << "in" << endl;
     Movie* mov = new Movie(title, year, direct, rate, dur);
+    cout << "inn" << endl;
     MediaLs.push_back(mov);
+    //cout << "innn" << endl;
   }
   else if (strcmp(mediaVar, "music") == 0) {
 
     char* title;
+    title = new char[80];
     char* artist;
+    artist = new char[80];
     int year = 0;
     int dur = 0;
-    int publisher = 0;
+    char* publisher = 0;
+    publisher = new char[80];
     cout << "enter title" << endl;
     cin >> title;
     cin.ignore(256, '\n');
@@ -85,9 +94,11 @@ void add (vector<Media*> &MediaLs) { //the class that hold the information assig
     else if (strcmp(mediaVar, "videogames") == 0) {
 
     char* title;
+    title = new char[80];
     int year = 0;
     int rate = 0;
-    int publisher = 0;
+    char* publisher = 0;
+    publisher = new char[80];
     cout << "enter title" << endl;
     cin >> title;
     cin.ignore(256, '\n');
@@ -107,6 +118,49 @@ void add (vector<Media*> &MediaLs) { //the class that hold the information assig
 
   
 }
-  //  void search(vector<Media*
+/*void searchMedia (vector<Media*> &MediaLs) {
+  vector<Media*> :: iterator it;
+  char* input;
+  input = new char[80];
+  cout << "enter a year or title" << endl;
+  cin.getline(input, 80);
+  for (it = MediaLs.begin(); it < MediaLs.end(); it++) {
+    if (strcmp(input, (*it) -> getTitle()) == 0 || (int)(*input) == (*it) -> getYear()) {
+	  (*it) -> print();
+	}
+  }
+  
+  }*/
+void searchMedia(vector<Media*> &MediaLs) {
+  vector<Media*> :: iterator it;
+  char* input;
+  input = new char[80];
+
+  cout << "do you wish to search by title or year" << endl;
+
+  cin.getline(input, 80);
+
+  if (strcmp(input, "title") == 0) {
+    char* title;
+    title = new char[80];
+    cout << "please enter title" << endl;
+    cin.getline(title, 80);
+    for(it = MediaLs.begin(); it < MediaLs.end(); it++) {
+      if (strcmp(title, (*it) -> getTitle()) == 0) {
+	(*it) -> print();
+      }
+    }
+  }
+  else if(strcmp(input, "year") == 0) {
+    int year = 0;
+    cout << "enter a year" << endl;
+    cin >> year;
+    for (it = MediaLs.begin(); it < MediaLs.end(); it++) {
+      if(year == (*it) -> getYear()) {
+	  (*it) -> print();
+	}
+    }
+  }
+}
 
 

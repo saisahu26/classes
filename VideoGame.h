@@ -14,6 +14,8 @@ class VideoGame : public Media {
   VideoGame(char* titleMedia, int yearMedia, char*publisherVideoGame, int ratingVideoGame);
   char* getPublisher();
   int getRating();
+  void print();
+  ~VideoGame();
  protected:
   char* publisher;
   int rating;

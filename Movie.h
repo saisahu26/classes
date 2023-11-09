@@ -15,6 +15,8 @@ class Movie: public Media {
   char* getDirector();
   int getDur();
   int getRating();
+  void print();
+  ~Movie();
  protected:
   char*director;
   int duration;

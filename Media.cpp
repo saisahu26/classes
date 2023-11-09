@@ -13,6 +13,7 @@ Media::Media(char* titleMedia, int yearMedia) {
     char [80];
   strcpy(title, titleMedia);
   year = yearMedia;
+  cout << "finished media con" << endl;
 }
 
 char* Media::getTitle() {
@@ -21,4 +22,13 @@ char* Media::getTitle() {
 
 int Media::getYear() {
   return year;
+}
+
+void Media :: print() {
+  cout << "title: " << title << endl;
+  cout << "year: " << year << endl;
+}
+
+Media :: ~Media() {
+  
 }

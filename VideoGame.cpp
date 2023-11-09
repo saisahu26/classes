@@ -20,3 +20,16 @@ char* VideoGame :: getPublisher() {
 int VideoGame :: getRating() {
   return rating;
 }
+
+void VideoGame :: print() {
+  cout << "title: " << title << endl;
+  cout << "year: " << year << endl;
+  cout << "publisher: " << publisher << endl;
+  cout << "rating: " << rating << endl;
+ 
+
+}
+
+VideoGame :: ~VideoGame () {
+
+}
